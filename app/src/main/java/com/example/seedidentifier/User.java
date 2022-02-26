@@ -4,6 +4,7 @@ import java.io.Serializable;
     Basic implementation of user
     to begin login component
     -Matthew 2/25
+    -Shane 2/26
 */
 public class User implements Serializable{
     /*
@@ -17,6 +18,8 @@ public class User implements Serializable{
 
     //fields
     private String Name;
+    private String ID;
+    private String Profession;
     private String Password;
     private String SQ;
     private String SQA;
@@ -25,22 +28,61 @@ public class User implements Serializable{
     //Getters and Setters
     public String getUserName(){
         return  Name;
-    }
-    public void setUserName(String s){
+    } // Get the user's name
+    public void setUserName(String s) // Set the user's name
+    {
         if(s==null){throw new IllegalArgumentException("Name cannot be empty");}
         if(s.length()==0){throw new IllegalArgumentException("Name cannot be empty");}
         Name = s;
     }
     public String getUserPassword(){
         return Password;
+    } // Get the current user password
+    public String getSQ() // Get the current Security Question
+    {
+        return  SQ;
     }
-
+    public void setSQ(String s) // Set a new Security Question
+    {
+        if(s==null){throw new IllegalArgumentException("Security Question cannot be empty");}
+        if(s.length()==0){throw new IllegalArgumentException("Security Question cannot be empty");}
+        SQ = s;
+    }
+    public String getSQA() // Get the current answer to the Security Question
+    {
+        return  SQA;
+    }
+    public void setSQA(String s) // Set a new answer to the Security Question
+    {
+        if(s==null){throw new IllegalArgumentException("Security Question Answer cannot be empty");}
+        if(s.length()==0){throw new IllegalArgumentException("Security Question Answer cannot be empty");}
+        SQA = s;
+    }
+    public String getID() // Get the current Security Question
+    {
+        return  ID;
+    }
+    public void setID(String s) // Set a new Security Question
+    {
+        if(s==null){throw new IllegalArgumentException("ID cannot be empty");}
+        if(s.length()==0){throw new IllegalArgumentException("ID cannot be empty");}
+        ID = s;
+    }
+    public String getProfession() // Get the current Security Question
+    {
+        return  Profession;
+    }
+    public void setProfession(String s) // Set a new Security Question
+    {
+        if(s==null){throw new IllegalArgumentException("Profession cannot be empty");}
+        if(s.length()==0){throw new IllegalArgumentException("Profession cannot be empty");}
+        Profession = s;
+    }
     //constructors
     public void setUserPassword(String s){
         if(s.length()==0){throw new IllegalArgumentException("Password cannot be empty");}
         Password = s;
     }
-
     public User(String name, String pass){
         Password = pass;
         Name = name;
