@@ -32,7 +32,7 @@ public class User_Database {
         user_Num = 0;
     }
 
-    //logic
+    //logics
 
     /*
         Load Data takes a filename which it will
