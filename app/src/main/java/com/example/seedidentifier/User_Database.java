@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-    DO NOT USE YET!
     Basic implementation of User_Database
     to begin login component
-    Must implement looped reading and writing for object files
+    Class has been tested with add, load and save
+    NOT edit or remove but these are trivial wrapper functions
+    See testing file in Discord
     -Matthew 2/25
 */
 public class User_Database {
@@ -27,10 +28,19 @@ public class User_Database {
 
     //constructors
     public User_Database(){
+        _users = new ArrayList<>();
         user_Num = 0;
     }
 
     //logic
+
+    /*
+        Load Data takes a filename which it will
+    try to load _users from. The file needs no extension.
+    Types of Users are preserved. The generics cast is
+    functional and tested, but always generates warnings
+    */
+    @SuppressWarnings("unchecked")
     public void loadData(String fileName) {
         try{
             FileInputStream fi = new FileInputStream(fileName);
@@ -38,6 +48,7 @@ public class User_Database {
             _users = (ArrayList<User>) oi.readObject();
             fi.close();
             oi.close();
+            user_Num = _users.size();
 
         }catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -48,6 +59,12 @@ public class User_Database {
 
     }
 
+    /*
+        Save Data takes a filename which it will
+    save _users to. The file needs no extension
+    and automatically saves in the directory. Types of Users are
+    preserved
+    */
     public void saveData(String fileName){
         try{
             FileOutputStream f = new FileOutputStream(fileName);
@@ -103,8 +120,5 @@ public class User_Database {
     public void editUser(int i, User u){
         _users.set(i, u);
     }
-
-
-
 
 }
