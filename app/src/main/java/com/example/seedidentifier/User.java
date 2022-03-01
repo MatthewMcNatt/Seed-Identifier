@@ -87,4 +87,11 @@ public class User implements Serializable{
         Password = pass;
         Name = name;
     }
+
+    public void validate(){
+        if(Name==null || Name.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
+        if(Password==null || Password.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
+        if(SQ==null || SQ.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
+        if(SQA==null || SQA.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
+    }
 }

@@ -42,6 +42,8 @@ public class User_Database {
     */
     @SuppressWarnings("unchecked")
     public void loadData(String fileName) {
+        if(fileName == null){throw new IllegalArgumentException("Null String Entered");}
+        if(fileName.isEmpty()){throw new IllegalArgumentException("Empty String Entered");}
         try{
             FileInputStream fi = new FileInputStream(fileName);
             ObjectInputStream oi = new ObjectInputStream(fi);
@@ -66,6 +68,8 @@ public class User_Database {
     preserved
     */
     public void saveData(String fileName){
+        if(fileName == null){throw new IllegalArgumentException("Null String Entered");}
+        if(fileName.isEmpty()){throw new IllegalArgumentException("Empty String Entered");}
         try{
             FileOutputStream f = new FileOutputStream(fileName);
             ObjectOutputStream o = new ObjectOutputStream(f);
@@ -85,6 +89,8 @@ public class User_Database {
 
     /*get by name*/
     public User getUser(String name){
+        if(name == null){throw new IllegalArgumentException("Null String Entered");}
+        if(name.isEmpty()){throw new IllegalArgumentException("Empty String Entered");}
         for(User u : _users){
             if (u.getUserName().equals(name)) return u;
         }
@@ -93,11 +99,14 @@ public class User_Database {
 
     /*standard get by index*/
     public User getUser(int i){
+        if(i < 0 || i > user_Num){throw new IllegalArgumentException("Out of range index");}
         return _users.get(i);
     }
 
     /*gets user index by name*/
     public int getUserIndex(String name){
+        if(name == null){throw new IllegalArgumentException("Null String Entered");}
+        if(name.isEmpty()){throw new IllegalArgumentException("Empty String Entered");}
         for(int i = 0; i < _users.size(); i++){
             if(_users.get(i).getUserName().equals(name)) return i;
         }
@@ -112,13 +121,17 @@ public class User_Database {
 
     /*standard remove and decrement*/
     public void removeUser(int key){
+        if(key < 0 || key > user_Num){throw new IllegalArgumentException("Out of range index");}
         _users.remove(key);
         user_Num--;
     }
 
     /*replaces user at i with User u */
     public void editUser(int i, User u){
+        if(i < 0 || i > user_Num){throw new IllegalArgumentException("Out of range index");}
+        _users.get(i).validate();
         _users.set(i, u);
     }
+
 
 }

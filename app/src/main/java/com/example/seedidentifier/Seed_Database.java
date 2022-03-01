@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.lang.Object;
 import java.util.List;
 
 /*
@@ -117,6 +118,20 @@ public class Seed_Database {
     /*replaces user at i with Seed s */
     public void editUser(int i, Seed s){
         _seeds.set(i, s);
+    }
+
+    /*
+        UML implementation beginings
+    */
+    public void addNotes(Seed seed, String notes){
+        seed.setNotes(notes);
+    }
+
+    public Seed findSeed(String name){
+        for(Seed s : _seeds){
+            if (s.getSeedName().equalsIgnoreCase(name) || s.getSeedName().contains(name)) return s;
+        }
+        return null;
     }
 
 }
