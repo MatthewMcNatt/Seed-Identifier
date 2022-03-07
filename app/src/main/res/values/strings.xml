@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Seed Identifier</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="enter_your_username">Enter your Username</string>
+    <string name="please_enter_your_username_and_password">Please enter your Username and Password.</string>
+    <string name="sign_in">Sign In</string>
 </resources>
