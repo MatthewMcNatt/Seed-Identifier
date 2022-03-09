@@ -23,6 +23,9 @@ public class User_Database {
     private ArrayList<User> _users;
     private int user_Num;
 
+    //FOR DB CONNECTION, REFERS TO USER CURRENTLY LOGGED IN
+    private User current;
+
     //simple getters & setters
     public int getUserNum(){return user_Num;}
 
@@ -132,6 +135,28 @@ public class User_Database {
         _users.get(i).validate();
         _users.set(i, u);
     }
+
+    /*login takes a name and a password. Right now it just returns NULL
+    * if the Name isn't found or the password does not line up. If Requested will add
+    * individual exceptions for password fail or name fail*/
+    public User login(String name, String password){
+        User user = getUser(name);
+        if(user==null) return null;
+        if(!user.getUserPassword().equals(password)) return null;
+        current = user;
+        return user;
+    }
+
+    //more of the same if needed
+    public User loginWithLockout(String name, String password, int tries){
+        if(tries > 3) return null;
+        User user = getUser(name);
+        if(user==null) return null;
+        if(!user.getUserPassword().equals(password)) return null;
+        current = user;
+        return user;
+    }
+
 
 
 }
