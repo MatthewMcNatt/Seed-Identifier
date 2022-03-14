@@ -4,4 +4,5 @@
     <string name="enter_your_username">Enter your Username</string>
     <string name="please_enter_your_username_and_password">Please enter your Username and Password.</string>
     <string name="sign_in">Sign In</string>
+    <string name="sign_up">SIGN UP</string>
 </resources>
