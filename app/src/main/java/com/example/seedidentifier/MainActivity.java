@@ -1,13 +1,11 @@
 package com.example.seedidentifier;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Text;
 
@@ -28,5 +26,12 @@ Text textView;
             Intent i = new Intent(MainActivity.this,Signup.class);
             startActivity(i);
         });
+
+        SignIn = (Button)findViewById(R.id.SignIn);
+        SignIn.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, MenuNavigation.class);
+            startActivity(i);
+        });
+
     }
 }
