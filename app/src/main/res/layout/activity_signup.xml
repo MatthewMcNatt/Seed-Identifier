@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Signup">
 
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/back" />
+
     <Button
         android:id="@+id/CreateAccount"
         android:layout_width="wrap_content"
@@ -18,10 +27,10 @@
 
     <EditText
         android:id="@+id/NewPassword"
-        android:layout_width="235dp"
-        android:layout_height="61dp"
-        android:ems="10"
+        android:layout_width="251dp"
+        android:layout_height="75dp"
         android:autofillHints="Enter your Password"
+        android:ems="10"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,10 +40,10 @@
 
     <EditText
         android:id="@+id/NewUsername"
-        android:layout_width="233dp"
-        android:layout_height="59dp"
-        android:ems="10"
+        android:layout_width="253dp"
+        android:layout_height="75dp"
         android:autofillHints="Enter your Username"
+        android:ems="10"
         android:hint="@string/enter_username"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/NewPassword"
