@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.Image;
 
+import com.example.seedidentifier.ml.Prototype2;
 import com.example.seedidentifier.ml.Protoype1;
 
 import org.tensorflow.lite.support.image.TensorImage;
@@ -21,7 +22,7 @@ import java.util.Locale;
 public class ImageAnalyzer implements Serializable {
 
     private Context context;
-    private Protoype1 model;
+    private Prototype2 model;
     private Seed_Database data;
     private static final long serialVersionUID = 1;
 
@@ -31,9 +32,9 @@ public class ImageAnalyzer implements Serializable {
     }
     public Seed analyzeImage(Bitmap bitmap){
         try{
-            model = Protoype1.newInstance(context);
+            model = Prototype2.newInstance(context);
             TensorImage image = TensorImage.fromBitmap(bitmap);
-            Protoype1.Outputs output = model.process(image);
+            Prototype2.Outputs output = model.process(image);
             List<Category> probability = output.getProbabilityAsCategoryList();
             Collections.sort(probability, new SortByProbability());
             if(probability.size() != 0){
