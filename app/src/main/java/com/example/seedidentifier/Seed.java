@@ -1,14 +1,24 @@
 package com.example.seedidentifier;
 
-public class Seed {
+import android.media.Image;
+import android.widget.ImageView;
+
+import java.io.Serializable;
+
+public class Seed implements Serializable {
+    private static final long serialVersionUID = 1;
     private String _name;
     private String _description;
     private String _notes;
+    private int _image;
     private int _data_base_id;
 
     //standard getters
     public String getSeedName(){
         return _name;
+    }
+    public int getImage(){
+        return _image;
     }
     public String getDescription(){
         return _description;
@@ -39,6 +49,9 @@ public class Seed {
     public void setDataBaseID(int i){
         if(i < 0){throw new IllegalArgumentException("Data key cant be negative");}
         _data_base_id = i;
+    }
+    public void setImage(int i){
+        _image = i;
     }
 
     //constructors

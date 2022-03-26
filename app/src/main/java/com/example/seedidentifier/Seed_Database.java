@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.lang.Object;
 import java.util.List;
@@ -16,11 +17,12 @@ import java.util.List;
 
     -Matthew 2/28
 */
-public class Seed_Database {
+public class Seed_Database implements Serializable {
 
     //fields
     private ArrayList<Seed> _seeds;
     private int _seed_Num;
+    private static final long serialVersionUID = 1;
 
     //simple getters & setters
     public int getSeedNum(){return _seed_Num;}
@@ -132,6 +134,18 @@ public class Seed_Database {
             if (s.getSeedName().equalsIgnoreCase(name) || s.getSeedName().contains(name)) return s;
         }
         return null;
+    }
+
+    public int getSize(){
+        return _seed_Num;
+    }
+
+    public List<String> getNames(){
+        List<String> names = new ArrayList<>();
+        for(Seed s :_seeds){
+            names.add(s.getSeedName());
+        }
+        return names;
     }
 
 }

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +18,12 @@ import java.util.List;
     See testing file in Discord
     -Matthew 2/25
 */
-public class User_Database {
+public class User_Database implements Serializable {
 
     //fields
     private ArrayList<User> _users;
     private int user_Num;
+    private static final long serialVersionUID = 1;
 
     //FOR DB CONNECTION, REFERS TO USER CURRENTLY LOGGED IN
     private User current;
@@ -155,6 +157,13 @@ public class User_Database {
         if(!user.getUserPassword().equals(password)) return null;
         current = user;
         return user;
+    }
+    public List<String> getNames(){
+        List<String> names = new ArrayList<>();
+        for(User s :_users){
+            names.add(s.getUserName());
+        }
+        return names;
     }
 
 

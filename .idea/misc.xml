@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SeedIdentifier/app/src/main/res/drawable/corn.xml" value="0.204" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SeedIdentifier/app/src/main/res/drawable/sunflower.xml" value="0.204" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SeedIdentifier/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/seand/StudioProjects/Seed-Identifier/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/seand/StudioProjects/Seed-Identifier/app/src/main/res/layout/activity_main.xml" value="0.2" />
