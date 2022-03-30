@@ -1,7 +1,10 @@
 package com.example.seedidentifier;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +21,22 @@ public class MenuNavigation extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.BottomNavView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+
+        // Added code for the camera implementation. Not final, move as desired.
+        /*
+        Button Add;
+        Add = findViewById(R.id.button2);
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toCamera = new Intent(MenuNavigation.this,Camera.class);
+                startActivity(toCamera);
+            }
+        });
+
+         */
+        // End of camera button code.
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new HomeFragment()).commit();
     }
@@ -47,9 +66,4 @@ public class MenuNavigation extends AppCompatActivity {
             return true;
         }
     };
-
-
-
-
-
 }
