@@ -18,9 +18,9 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        NewPassword = (EditText)findViewById(R.id.NewPassword);
-        NewUsername = (EditText)findViewById(R.id.NewUsername);
-        CreateAccount = (Button)findViewById(R.id.CreateAccount);
+        NewPassword = findViewById(R.id.NewPassword);
+        NewUsername = findViewById(R.id.NewUsername);
+        CreateAccount = findViewById(R.id.CreateAccount);
         // Get the user database from the main activity
         Intent in = getIntent();
         User_Database users = (User_Database)in.getSerializableExtra("UserDatabase");

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SignUp = (Button)findViewById(R.id.SignUp);
+        SignUp = findViewById(R.id.SignUp);
         SignUp.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this,Signup.class);
             i.putExtra("UserDatabase",users); // Sending Database to Signup activity
@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
         });
         // Creating an arraylist to hold all of the current users
         int index = 0;
-        ArrayList<User> userList = new ArrayList<User>();
-        while(users.getUser(index) != null)
-        {
-            userList.add(users.getUser(index));
-            index++;
-        }
-        SignIn = (Button)findViewById(R.id.SignIn);
+        ArrayList<User> userList = new ArrayList<>();
+        //while(users.getUser(index) != null)
+        //{
+            //userList.add(users.getUser(index));
+            //index++;
+        //}
+        SignIn = findViewById(R.id.SignIn);
         SignIn.setOnClickListener(view -> {
             // Check through each and every user to see if the login information matches the entered information
             for(User it : userList)
