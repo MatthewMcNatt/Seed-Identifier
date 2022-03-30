@@ -24,7 +24,6 @@ public class MenuNavigation extends AppCompatActivity {
 
 
         // Added code for the camera implementation. Not final, move as desired.
-        /*
         Button Add;
         Add = findViewById(R.id.button2);
         Add.setOnClickListener(new View.OnClickListener() {
@@ -34,8 +33,6 @@ public class MenuNavigation extends AppCompatActivity {
                 startActivity(toCamera);
             }
         });
-
-         */
         // End of camera button code.
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new HomeFragment()).commit();
