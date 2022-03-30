@@ -31,10 +31,14 @@ import java.util.concurrent.Executor;
 
 public class Camera  extends AppCompatActivity {
 
+    // Created the camera provider to be able to get an instance of a camera.
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+
+    // Permission codes used for the app. Both STORAGE and CAMERA are required.
     private static final int CAMERA_PERMISSION_CODE = 100;
     private static final int STORAGE_PERMISSION_CODE = 101;
 
+    // Creating the button, preview and imageCapture use case.
     private PreviewView previewView;
     private Button snap;
     private ImageCapture imageCapture;
@@ -44,12 +48,16 @@ public class Camera  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
+        //Instance both the button and the preview.
         previewView = findViewById(R.id.previewView);
         snap = findViewById(R.id.button);
 
+        // Run the check for the permissions required.
+        // This is important because android 6+ now requires permissions to be set on the fly.
         hasPermission(Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE);
         hasPermission(Manifest.permission.CAMERA, STORAGE_PERMISSION_CODE);
 
+        // Listener for the button, take a picture when button is clicked.
         snap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +65,7 @@ public class Camera  extends AppCompatActivity {
             }
         });
 
+        // Set up the camera provider to either start the camera or print the exceptions.
         cameraProviderFuture = ProcessCameraProvider.getInstance(Camera.this);
         cameraProviderFuture.addListener(() -> {
             try {
@@ -69,18 +78,25 @@ public class Camera  extends AppCompatActivity {
         }, getExecutor());
     }
 
+    //Function in charge of taking the photo and saving it.
     private void takeImage() {
+        // Assign path to the folder the images will be stored in. If not there, create it.
         File imageDir = new File(getCodeCacheDir().getAbsolutePath() + "/images/");
         if(!imageDir.exists())
             if(!imageDir.mkdirs()){
                 Toast.makeText(Camera.this,"Couldn't do path", Toast.LENGTH_SHORT).show();
             }
+
+        // Set the name of the file plus the path that we created. In this case, a timestamp is used as a name.
+        // temporary.
         Date date = new Date();
         String timestamp = String.valueOf(date.getTime());
         String newPath = imageDir.getAbsolutePath() +  "/" + timestamp + ".jpg";
 
+        // Create a photo file with the new name and path.
         File photo = new File(newPath);
 
+        // Take the picture and save it in the assigned path.
         imageCapture.takePicture(
                 new ImageCapture.OutputFileOptions.Builder(photo).build(),
                 getExecutor(),
@@ -97,45 +113,63 @@ public class Camera  extends AppCompatActivity {
         );
     }
 
+    // Override to ask for the appropiate permission when needed.
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        // Checking whether user granted the permission or not.
+        // Check if the permission are available or not.
 
+        //Check for CAMERA permission.
         if (requestCode == CAMERA_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                Toast.makeText(Camera.this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Camera.this, "Camera permission granted", Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(Camera.this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == STORAGE_PERMISSION_CODE)
+                Toast.makeText(Camera.this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+        }
+
+        //Check for STORAGE permission.
+        else if (requestCode == STORAGE_PERMISSION_CODE)
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                Toast.makeText(Camera.this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Camera.this, "Storage permission granted", Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(Camera.this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Camera.this, "Storage permission granted", Toast.LENGTH_SHORT).show();
     }
+
+    // Function in charge of starting the camera, using the cameraProvider created before.
     private void startCameraX(ProcessCameraProvider cameraProvider) {
-        cameraProvider.unbindAll();
+        cameraProvider.unbindAll(); // Unbind all the use cases, to start from 0.
+
+        // Assign the back camera using a cameraSelector.
         CameraSelector cameraSelector = new CameraSelector.Builder()
                 .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build();
 
+        // Create a preview its surface to the previewView instanced before.
+        // Preview use case.
         Preview preview = new Preview.Builder().build();
         preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
+        // Create the imageCapture that will be used to take the pictures.
+        // ImageCapture use case.
         imageCapture = new ImageCapture.Builder()
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                 .build();
 
+        // Bind all the new use cases to the cameraProvider, this will start the camera.
         cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview,imageCapture);
     }
+
+    // Function required to check if the app has the appropiate permissions to use the camera.
     private void hasPermission(String permission, int code) {
+        // if the app has the permission name sent granted, then return its already granted.
+        // Otherwise, request the permission.
         if (ContextCompat.checkSelfPermission(Camera.this, permission) == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(Camera.this, new String[]{permission}, code);
         else
             Toast.makeText(Camera.this, "Permission already granted", Toast.LENGTH_SHORT).show();
     }
-
+    // Executor, required for both the camera preview and the imageCapture use case.
     private Executor getExecutor() {
         return ContextCompat.getMainExecutor(Camera.this);
     }
