@@ -16,4 +16,6 @@
     <string name="about">About</string>
     <string name="take_picture">Take Picture</string>
     <string name="add">Add</string>
+    <string name="incorrect_username_or_password">Incorrect Username or Password</string>
+    <string name="seed_identifier">Seed Identifier</string>
 </resources>
