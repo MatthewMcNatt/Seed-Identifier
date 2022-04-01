@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.lang.Object;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -148,4 +149,8 @@ public class Seed_Database implements Serializable {
         return names;
     }
 
+    //returns const
+    public List get_seeds() {
+        return Collections.unmodifiableList(_seeds);
+    }
 }
