@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Seed_Info extends AppCompatActivity {
 
     ImageView SeedInfoPicture;
-    EditText SeedInfoName, SeedInfoDescription, SeedInfoNotes;
+    TextView SeedInfoDescription;
+    EditText SeedInfoName, SeedInfoNotes;
     Button OK;
     int id;
 
@@ -28,7 +30,7 @@ public class Seed_Info extends AppCompatActivity {
 
         SeedInfoPicture = findViewById(R.id.IV_SeedPicture);
         SeedInfoName = findViewById(R.id.ET_SeedName);
-        SeedInfoDescription = findViewById(R.id.ET_SeedDescription);
+        SeedInfoDescription = findViewById(R.id.TV_SeedDescription);
         SeedInfoNotes = findViewById(R.id.ET_SeedNotes);
 
         SeedInfoPicture.setImageResource(SeedImage);

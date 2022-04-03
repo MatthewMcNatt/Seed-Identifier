@@ -38,6 +38,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
         android:text="Name:"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IV_SeedPicture" />
 
@@ -48,6 +49,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="Description:"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_SeedName" />
 
@@ -56,10 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Notes:"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ET_SeedDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_SeedDescription" />
 
     <EditText
         android:id="@+id/ET_SeedName"
@@ -74,30 +77,29 @@
         app:layout_constraintTop_toBottomOf="@+id/IV_SeedPicture" />
 
     <EditText
-        android:id="@+id/ET_SeedDescription"
-        android:layout_width="343dp"
-        android:layout_height="104dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Description"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <EditText
         android:id="@+id/ET_SeedNotes"
         android:layout_width="335dp"
         android:layout_height="155dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Notes"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+    <TextView
+        android:id="@+id/TV_SeedDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:maxLines="6"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

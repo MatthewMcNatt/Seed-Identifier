@@ -30,9 +30,10 @@
         <entry key="app/src/main/res/layout/activity_seed_info.xml" value="0.23412628173828126" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.16893115942028986" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.17256011962890624" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/list_view_row.xml" value="0.24951782226562502" />
+        <entry key="app/src/main/res/menu/back.xml" value="0.21302083333333333" />
       </map>
     </option>
   </component>
