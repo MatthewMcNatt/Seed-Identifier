@@ -16,6 +16,11 @@ import org.w3c.dom.Text;
 
 //a check
 // repo confirmation
+/*
+    MATTHEW MCNATT (4/3/2022):
+    attempted permittivity of files.
+*/
+
 public class MainActivity extends AppCompatActivity {
 
     Button SignUp;
@@ -34,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         LoginError = findViewById(R.id.LoginError);
         EnterPassword = findViewById(R.id.EnterPassword);
         EnterUsername = findViewById(R.id.EnterUsername);
+
+        //LOADING DATA IN TO USER DATABASE
+        users.loadData(getCodeCacheDir().getAbsolutePath() + "users");
+        //
+
+
         SignUp.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this,Signup.class);
             i.putExtra("UserDatabase",users); // Sending Database to Signup activity

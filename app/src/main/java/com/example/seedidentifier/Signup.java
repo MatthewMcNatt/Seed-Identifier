@@ -35,6 +35,13 @@ public class Signup extends AppCompatActivity {
         CreateAccount.setOnClickListener(view -> {
             // Add the entered input as a new default user
             users.addUser(new Default_User(NewUsername.getText().toString(), NewPassword.getText().toString()));
+
+
+            //SAVES DATA ON MACHINE
+            users.saveData(getCodeCacheDir().getAbsolutePath() + "users");
+            //END CHANGES
+
+
             users.login(NewUsername.getText().toString(), NewPassword.getText().toString());
             Intent i = new Intent(Signup.this, MenuNavigation.class);
             // Send the user database to the menu navigation activity
