@@ -18,7 +18,7 @@ import org.w3c.dom.Text;
 // repo confirmation
 /*
     MATTHEW MCNATT (4/3/2022):
-    attempted permittivity of files
+    attempted permittivity of files.
 */
 
 public class MainActivity extends AppCompatActivity {
