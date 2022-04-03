@@ -151,6 +151,6 @@ public class Seed_Database implements Serializable {
 
     //returns const
     public ArrayList<Seed> get_seeds() {
-        return (ArrayList<Seed>) Collections.unmodifiableList(_seeds);
+        return (ArrayList<Seed>) _seeds;
     }
 }

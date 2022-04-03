@@ -55,9 +55,10 @@ public class Seed implements Serializable {
     }
 
     //constructors
-    public Seed(String name, String description){
+    public Seed(String name, String description/*,int image*/){
         _name = name;
         _description = description;
+       // _image = image;
     }
 
     //private methods

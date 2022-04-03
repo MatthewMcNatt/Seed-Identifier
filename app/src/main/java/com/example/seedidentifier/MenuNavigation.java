@@ -20,25 +20,13 @@ public class MenuNavigation extends AppCompatActivity {
         setContentView(R.layout.activity_bottom_navigation);
 
         BottomNavigationView bottomNav = findViewById(R.id.BottomNavView);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        bottomNav.setOnItemSelectedListener(navListener);
 
-
-        // Added code for the camera implementation. Not final, move as desired.
-        Button Add;
-        Add = findViewById(R.id.button2);
-        Add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toCamera = new Intent(MenuNavigation.this,Camera.class);
-                startActivity(toCamera);
-            }
-        });
-        // End of camera button code.
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new HomeFragment()).commit();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnItemSelectedListener navListener = new BottomNavigationView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;

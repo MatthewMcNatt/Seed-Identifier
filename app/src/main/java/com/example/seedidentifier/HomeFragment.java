@@ -1,63 +1,70 @@
 package com.example.seedidentifier;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_home,container,false);
+
+        // Added code for the camera implementation. Not final, move as desired.
+        Button Add;
+        Add = (Button) contentView.findViewById(R.id.AddSeedButton);
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toCamera = new Intent(getActivity(),Camera.class);
+                startActivity(toCamera);
+            }
+        });
+        // End of camera button code.
+
+
+        // inflate the listView
+        ListView SeedListView = contentView.findViewById(R.id.SeedListView);
+        ArrayList<Seed> SeedList = new ArrayList<Seed>();
+
+        // populate the listView
+        Seed_Database seed_database = new Seed_Database();
+        SeedPopulator seed_populator = new SeedPopulator();
+        seed_populator.populate(seed_database);
+
+        SeedList = seed_database.get_seeds();
+        //  System.out.println(SeedList);
+//
+//        SeedList.add(new Seed("Sunflower Seed","Sunflowers make for a beautiful edition to any summer garden",
+//                R.drawable.sunflower));
+//        SeedList.add(new Seed("Corn Seed","Also known as Maize, this cereal crop is a staple that does best being planted after the last frost",
+//                R.drawable.corn));
+//        SeedList.add(new Seed("Cucumber Seed","This staple vegetable is technically a fruit that grows from a vine and does best in warm humid environments",
+//                R.drawable.cucumber));
+//        SeedList.add(new Seed("Pumpkin Seed","This staple vegetable is technically a fruit that grows from a vine and does best in warm humid environments",
+//                R.drawable.sunflower));
+
+        SeedAdapter adapter = new SeedAdapter(SeedList,getActivity());
+        SeedListView.setAdapter(adapter);
+
+        return contentView;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

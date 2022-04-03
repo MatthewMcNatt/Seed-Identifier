@@ -26,9 +26,16 @@ public class SeedPopulator implements Serializable {
         cucumber.setImage(R.drawable.cucumber);
         cucumber.setDataBaseID(2);
 
+        Seed newSunflower = new Seed("Sunflower", "Sunflowers make for a beautiful edition to any summer garden" +
+                " and the seeds are edible as well. Make sure these plants get at least 6 hours of direct sun a day.");
+        newSunflower.setNotes("No Notes");
+        newSunflower.setImage(R.drawable.sunflower);
+        newSunflower.setDataBaseID(3);
+
         data.addSeed(corn);
         data.addSeed(cucumber);
         data.addSeed(sunflower);
+        data.addSeed(newSunflower);
 
 
     }
