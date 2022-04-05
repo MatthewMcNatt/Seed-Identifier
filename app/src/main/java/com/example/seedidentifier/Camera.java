@@ -1,7 +1,10 @@
 package com.example.seedidentifier;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Size;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
@@ -24,6 +28,9 @@ import androidx.lifecycle.LifecycleOwner;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -50,6 +57,7 @@ public class Camera  extends AppCompatActivity {
 
         //Instance both the button and the preview.
         previewView = findViewById(R.id.previewView);
+        previewView.setScaleType(PreviewView.ScaleType.FILL_START);
         snap = findViewById(R.id.button);
 
         // Run the check for the permissions required.
@@ -77,7 +85,6 @@ public class Camera  extends AppCompatActivity {
 
         }, getExecutor());
     }
-
     //Function in charge of taking the photo and saving it.
     private void takeImage() {
         // Assign path to the folder the images will be stored in. If not there, create it.
@@ -103,7 +110,22 @@ public class Camera  extends AppCompatActivity {
                 new ImageCapture.OnImageSavedCallback(){
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults){
-                        Toast.makeText(Camera.this,"Photo saved successfully at " + photo.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Camera.this,"Photo saved successfully" , Toast.LENGTH_SHORT).show();
+                        Bitmap bitmap = BitmapFactory.decodeFile(newPath);  // Create bitmap of the image taken.
+                        Bitmap correctBitmap = Bitmap.createBitmap(bitmap,0,0,bitmap.getHeight(),bitmap.getHeight()); //Convert image from 4:3 to 1:1
+                        Bitmap FinalBitmap = Bitmap.createScaledBitmap(correctBitmap,224,224,true); // Downscale image to 224,224.
+
+                        /* Used to save the resulting bitmap.
+                        FileOutputStream out = null;
+                        try {
+                            out = new FileOutputStream( imageDir.getAbsolutePath() +  "/" + timestamp + ".png");
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        FinalBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                         */
+
+                        getResults(FinalBitmap);
                     }
                     @Override
                     public void onError(@NonNull ImageCaptureException e){
@@ -112,7 +134,6 @@ public class Camera  extends AppCompatActivity {
                 }
         );
     }
-
     // Override to ask for the appropiate permission when needed.
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -135,7 +156,6 @@ public class Camera  extends AppCompatActivity {
             else
                 Toast.makeText(Camera.this, "Storage permission granted", Toast.LENGTH_SHORT).show();
     }
-
     // Function in charge of starting the camera, using the cameraProvider created before.
     private void startCameraX(ProcessCameraProvider cameraProvider) {
         cameraProvider.unbindAll(); // Unbind all the use cases, to start from 0.
@@ -159,18 +179,39 @@ public class Camera  extends AppCompatActivity {
         // Bind all the new use cases to the cameraProvider, this will start the camera.
         cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview,imageCapture);
     }
-
     // Function required to check if the app has the appropiate permissions to use the camera.
     private void hasPermission(String permission, int code) {
         // if the app has the permission name sent granted, then return its already granted.
         // Otherwise, request the permission.
         if (ContextCompat.checkSelfPermission(Camera.this, permission) == PackageManager.PERMISSION_DENIED)
             ActivityCompat.requestPermissions(Camera.this, new String[]{permission}, code);
-        else
-            Toast.makeText(Camera.this, "Permission already granted", Toast.LENGTH_SHORT).show();
+        //else
+            //Toast.makeText(Camera.this, "Permission already granted", Toast.LENGTH_SHORT).show();
     }
     // Executor, required for both the camera preview and the imageCapture use case.
     private Executor getExecutor() {
         return ContextCompat.getMainExecutor(Camera.this);
+    }
+    private void getResults(Bitmap bitmap){
+
+            //Print progress
+            Toast.makeText(Camera.this,"Started processing" , Toast.LENGTH_SHORT).show();
+            // Instance HomeFragment in order to pass its seed_database to ImageAnalyzer.
+            Seed_Database seeds = new Seed_Database();
+            SeedPopulator populator = new SeedPopulator();
+            populator.populate(seeds);
+            ImageAnalyzer imageAnalyzer = new ImageAnalyzer(Camera.this, seeds);
+            Seed seed = imageAnalyzer.analyzeImage(bitmap);
+
+            if(seed != null){
+                Intent intent = new Intent(Camera.this,Seed_Info.class);
+                intent.putExtra("SEED_IMAGE", seed.getImage());
+                intent.putExtra("SEED_NAME",seed.getSeedName());
+                intent.putExtra("SEED_DESCRIPTION", seed.getDescription());
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(Camera.this,"Image not recognized" , Toast.LENGTH_SHORT).show();
+            }
     }
 }
