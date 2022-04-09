@@ -132,7 +132,7 @@ public class Seed_Database implements Serializable {
 
     public Seed findSeed(String name){
         for(Seed s : _seeds){
-            if (s.getSeedName().equalsIgnoreCase(name) || s.getSeedName().contains(name)) return s;
+            if (s.getSeedLabel().equalsIgnoreCase(name) || s.getSeedLabel().contains(name)) return s;
         }
         return null;
     }
