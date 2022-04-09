@@ -19,6 +19,7 @@ import java.util.Locale;
 
 /*Wrapper for ML
 * Matthew 3/21/2022*/
+
 public class ImageAnalyzer implements Serializable {
 
     private Context context;
@@ -30,13 +31,33 @@ public class ImageAnalyzer implements Serializable {
         context = c;
         data = d;
     }
+
     public Seed analyzeImage(Bitmap bitmap){
         try{
+
+            //creates model and then feeds it tensor image
             model = Prototype2.newInstance(context);
             TensorImage image = TensorImage.fromBitmap(bitmap);
+
+            //runs model and creates a list of category objects that contain both label and probability
             Prototype2.Outputs output = model.process(image);
             List<Category> probability = output.getProbabilityAsCategoryList();
+
+            //close the model
+            model.close();
+
+            //DEBUG display all
+            for(Category c: probability){
+                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
+            }
+
             Collections.sort(probability, new SortByProbability());
+
+            //Display sorted
+            for(Category c: probability){
+                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
+            }
+
             if(probability.size() != 0){
                 return data.findSeed(probability.get(0).getLabel());
             }
