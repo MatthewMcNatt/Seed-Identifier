@@ -2,23 +2,32 @@ package com.example.seedidentifier;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup extends AppCompatActivity {
+
 
     Button CreateAccount;
     NavigationView Back;
     EditText NewPassword;
     EditText NewUsername;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -29,23 +38,21 @@ public class Signup extends AppCompatActivity {
         NewUsername = findViewById(R.id.NewUsername);
         CreateAccount = findViewById(R.id.CreateAccount);
         Back = findViewById(R.id.back);
+
+        //instance mAuth
+        mAuth = FirebaseAuth.getInstance();
+
         // Get the user database from the main activity
         Intent in = getIntent();
-        User_Database users = (User_Database)in.getSerializableExtra("UserDatabase");
         CreateAccount.setOnClickListener(view -> {
-            // Add the entered input as a new default user
-            users.addUser(new Default_User(NewUsername.getText().toString(), NewPassword.getText().toString()));
+
+            registerUser();
 
 
-            //SAVES DATA ON MACHINE
-            users.saveData(getCodeCacheDir().getAbsolutePath() + "users");
-            //END CHANGES
-
-
-            users.login(NewUsername.getText().toString(), NewPassword.getText().toString());
+            //users.login(NewUsername.getText().toString(), NewPassword.getText().toString());
             Intent i = new Intent(Signup.this, MenuNavigation.class);
             // Send the user database to the menu navigation activity
-            i.putExtra("UserDatabase",users);
+            //i.putExtra("UserDatabase",users);
             startActivity(i);
         });
         Back.setNavigationItemSelectedListener(view -> {
@@ -57,5 +64,65 @@ public class Signup extends AppCompatActivity {
         });
     }
 
+    private void registerUser() {
+        //for every field of user
+        String email = NewUsername.getText().toString().trim();
+        String password = NewPassword.getText().toString().trim();
+
+        //checking and initializing
+        if (email.isEmpty()) {
+            NewUsername.setError("Valid Email required");
+            NewUsername.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            NewUsername.setError("Valid Email required");
+            NewUsername.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            NewPassword.setError("Valid password required");
+            NewPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            NewPassword.setError("Valid password must be atleast 6 characters");
+            NewPassword.requestFocus();
+            return;
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            User user = new User(email, password);
+
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(Signup.this, "User has been Registered", Toast.LENGTH_LONG).show();
+                                    }else{
+                                        Toast.makeText(Signup.this, "Failed to register", Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            });
+
+                        }else{
+                            Toast.makeText(Signup.this, "Failed to register", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
 
 }
+
+
+
+

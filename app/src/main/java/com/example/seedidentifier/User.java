@@ -18,6 +18,7 @@ public class User implements Serializable{
 
     //fields
     private String Name;
+    private String Email;
     private String ID;
     private String Profession;
     private String Password;
@@ -25,15 +26,26 @@ public class User implements Serializable{
     private String SQA;
     private int Login_State;
 
+
+
     //Getters and Setters
     public String getUserName(){
         return  Name;
+    } // Get the user's name
+    public String getUserEmail(){
+        return  Email;
     } // Get the user's name
     public void setUserName(String s) // Set the user's name
     {
         if(s==null){throw new IllegalArgumentException("Name cannot be empty");}
         if(s.length()==0){throw new IllegalArgumentException("Name cannot be empty");}
         Name = s;
+    }
+    public void setUserEmail(String s) // Set the user's name
+    {
+        if(s==null){throw new IllegalArgumentException("Email cannot be empty");}
+        if(s.length()==0){throw new IllegalArgumentException("Email cannot be empty");}
+        Email = s;
     }
     public String getUserPassword(){
         return Password;
@@ -83,9 +95,10 @@ public class User implements Serializable{
         if(s.length()==0){throw new IllegalArgumentException("Password cannot be empty");}
         Password = s;
     }
-    public User(String name, String pass){
+
+    public User(String email, String pass){
         Password = pass;
-        Name = name;
+        Email = email;
     }
 
     public void validate(){

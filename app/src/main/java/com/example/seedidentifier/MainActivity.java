@@ -2,34 +2,47 @@ package com.example.seedidentifier;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ComponentActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.w3c.dom.Text;
 
-//a check
-// repo confirmation
+
 /*
-    MATTHEW MCNATT (4/3/2022):
-    attempted permittivity of files.
+    MATTHEW MCNATT (4/9/2022):
+    firebase addition and creation
 */
 
 public class MainActivity extends AppCompatActivity {
 
+    //this is the authenticator
+    private FirebaseAuth mAuth;
+
     Button SignUp;
     Button SignIn;
     EditText EnterPassword;
+
+    //THIS MUST BE AN EMAIL
     EditText EnterUsername;
+
+
     TextView LoginError;
-    // Create a variable for the user database
-    User_Database users = new User_Database();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,46 +53,65 @@ public class MainActivity extends AppCompatActivity {
         EnterPassword = findViewById(R.id.EnterPassword);
         EnterUsername = findViewById(R.id.EnterUsername);
 
-        //LOADING DATA IN TO USER DATABASE
-        users.loadData(getCodeCacheDir().getAbsolutePath() + "users");
-        //
+        //INSTANCE mAUTH
+        mAuth = FirebaseAuth.getInstance();
+
 
 
         SignUp.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this,Signup.class);
-            i.putExtra("UserDatabase",users); // Sending Database to Signup activity
             startActivity(i);
         });
         SignIn = findViewById(R.id.SignIn);
         SignIn.setOnClickListener(view -> {
-            // Check through each and every user to see if the login information matches the entered information
-            if(users.login(EnterUsername.getText().toString(), EnterPassword.getText().toString()) != null)
-            {
-                // Now that the login information was verified, send the correct user to the menu navigation activity
-                Intent i = new Intent(MainActivity.this, MenuNavigation.class);
-                i.putExtra("User",users);
-                LoginError.setVisibility(View.INVISIBLE);
-                startActivity(i);
-            }
-            else
-            {
-                LoginError.setVisibility(View.VISIBLE);
-            }
+            userLogin();
 
-            //for(User it : userList)
-            //{
-                //if(it.getUserName().equals(EnterUsername.getText().toString()))
-                //{
-                    //if(it.getUserPassword().equals(EnterPassword.getText().toString()))
-                    //{
-                        // Now that the login information was verified, send the correct user to the menu navigation activity
-                        //Intent i = new Intent(MainActivity.this, MenuNavigation.class);
-                        //i.putExtra("User",it);
-                        //startActivity(i);
-                    //}
-                //}
-            //}
+                LoginError.setVisibility(View.VISIBLE);
+
         });
+
+    }
+
+    private void userLogin() {
+        String email = EnterUsername.getText().toString().trim();
+        String password = EnterPassword.getText().toString().trim();
+
+        if (password.isEmpty()) {
+            EnterPassword.setError("Valid password required");
+            EnterPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            EnterPassword.setError("Valid password must be atleast 6 characters");
+            EnterPassword.requestFocus();
+            return;
+        }
+        if (email.isEmpty()) {
+            EnterUsername.setError("Valid Email required");
+            EnterUsername.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            EnterUsername.setError("Valid Email required");
+            EnterUsername.requestFocus();
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            //redirect to app main menu
+                            Intent i = new Intent(MainActivity.this, MenuNavigation.class);
+                            LoginError.setVisibility(View.INVISIBLE);
+                            startActivity(i);
+
+                        }else{
+                            LoginError.setVisibility(View.VISIBLE);
+                            Toast.makeText(MainActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
     }
 }
