@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
         SignIn = findViewById(R.id.SignIn);
         SignIn.setOnClickListener(view -> {
-            userLogin();
+                userLogin();
 
                 LoginError.setVisibility(View.VISIBLE);
 
