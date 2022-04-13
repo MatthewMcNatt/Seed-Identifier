@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -101,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            //get user
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             //redirect to app main menu
                             Intent i = new Intent(MainActivity.this, MenuNavigation.class);
                             LoginError.setVisibility(View.INVISIBLE);
