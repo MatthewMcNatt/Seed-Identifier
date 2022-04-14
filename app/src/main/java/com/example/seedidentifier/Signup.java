@@ -50,11 +50,12 @@ public class Signup extends AppCompatActivity {
 
 
             //users.login(NewUsername.getText().toString(), NewPassword.getText().toString());
-            Intent i = new Intent(Signup.this, MenuNavigation.class);
+            //Intent i = new Intent(Signup.this, MenuNavigation.class);
             // Send the user database to the menu navigation activity
             //i.putExtra("UserDatabase",users);
-            startActivity(i);
+           //startActivity(i);
         });
+
         Back.setNavigationItemSelectedListener(view -> {
             // Add the entered input as a new default user
             Intent i = new Intent(Signup.this, MainActivity.class);
@@ -99,13 +100,17 @@ public class Signup extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             User user = new User(email, password);
 
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            //NOTE:
+                            FirebaseDatabase.getInstance(
+                                    "https://auth-c1f4b-default-rtdb.firebaseio.com/").getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         Toast.makeText(Signup.this, "User has been Registered", Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(Signup.this, MenuNavigation.class);
+                                        startActivity(i);
                                     }else{
                                         Toast.makeText(Signup.this, "Failed to register", Toast.LENGTH_LONG).show();
                                     }

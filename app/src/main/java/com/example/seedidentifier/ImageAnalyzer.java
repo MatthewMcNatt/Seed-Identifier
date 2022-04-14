@@ -57,8 +57,10 @@ public class ImageAnalyzer implements Serializable {
             for(Category c: probability){
                 System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
             }
+            System.out.printf("%d is the size\n", probability.size());
 
             if(probability.size() != 0){
+                //THIS IS THE ISSUE
                 return data.findSeed(probability.get(0).getLabel());
             }
 
@@ -74,6 +76,6 @@ class SortByProbability implements Comparator<Category>
 {
     public int compare(Category a, Category b)
     {
-        return (int) (a.getScore() - b.getScore());
+        return Float.compare(b.getScore(), a.getScore());
     }
 }
