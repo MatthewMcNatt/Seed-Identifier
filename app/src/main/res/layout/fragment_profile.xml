@@ -18,17 +18,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_menu" />
 
-    <!--    <com.google.android.material.navigation.NavigationView-->
-    <!--        android:id="@+id/navigationView"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="60dp"-->
-    <!--        android:layout_marginTop="1dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:menu="@menu/back">-->
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/navigationView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginTop="1dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:menu="@menu/back">-->
 
-    <!--    </com.google.android.material.navigation.NavigationView>-->
+<!--    </com.google.android.material.navigation.NavigationView>-->
 
     <RelativeLayout
         android:id="@+id/TopView"
@@ -176,39 +176,40 @@
 
     <!--        <Button-->
 
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="20dp"-->
-    <!--        android:layout_marginEnd="20dp"-->
-    <!--        android:layout_marginBottom="100dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:background="@color/material_dynamic_neutral99"-->
-    <!--        android:backgroundTint="#849e2d"-->
-    <!--        android:fontFamily="@font/roboto_medium"-->
-    <!--        android:text="Update"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/PasswordContainer"-->
-    <!--        app:layout_constraintVertical_bias="0.326"-->
-    <!--        tools:ignore="TextContrastCheck">-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginBottom="100dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@color/material_dynamic_neutral99"-->
+<!--        android:backgroundTint="#849e2d"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Update"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/PasswordContainer"-->
+<!--        app:layout_constraintVertical_bias="0.326"-->
+<!--        tools:ignore="TextContrastCheck">-->
 
-    <!--    </Button>-->
+<!--    </Button>-->
 
 
     <!--    <Button-->
-    <!--        android:id="@+id/ConfirmAccount"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="80dp"-->
-    <!--        android:layout_marginBottom="184dp"-->
-    <!--        android:text="Confirm"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.498"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/TV_Password"-->
-    <!--        app:layout_constraintVertical_bias="0.45" />-->
+<!--        android:id="@+id/ConfirmAccount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:layout_marginBottom="184dp"-->
+<!--        android:text="Confirm"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/TV_Password"-->
+<!--        app:layout_constraintVertical_bias="0.45" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
