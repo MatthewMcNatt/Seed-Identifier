@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Seed Identifier</string>
     <string name="enter_your_password">Enter your Password</string>
-    <string name="enter_your_username">Enter your Username</string>
-    <string name="please_enter_your_username_and_password">Please enter your Username and Password.</string>
+    <string name="enter_your_email">Enter your Email</string>
+    <string name="please_enter_your_username_and_password">Please enter your Email and Password.</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">SIGN UP</string>
     <string name="confirm">Confirm</string>
@@ -16,6 +16,7 @@
     <string name="about">About</string>
     <string name="take_picture">Take Picture</string>
     <string name="add">Add</string>
-    <string name="incorrect_username_or_password">Incorrect Username or Password</string>
+    <string name="incorrect_email_or_password">Incorrect Email or Password</string>
     <string name="seed_identifier">Seed Identifier</string>
+    <string name="enter_email_address">Enter Email Address</string>
 </resources>
