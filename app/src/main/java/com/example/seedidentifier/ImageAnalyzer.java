@@ -70,6 +70,58 @@ public class ImageAnalyzer implements Serializable {
         return null;
 
     }
+
+    /*
+        The exact same message but it allows the return of
+        The match score from the Ml Model for transparency and
+        UI display
+    */
+    public MLPackage analyzeImagePackage(Bitmap bitmap){
+        Seed s;
+        float f;
+        MLPackage r;
+        try{
+
+
+            //creates model and then feeds it tensor image
+            model = Prototype2.newInstance(context);
+            TensorImage image = TensorImage.fromBitmap(bitmap);
+
+            //runs model and creates a list of category objects that contain both label and probability
+            Prototype2.Outputs output = model.process(image);
+            List<Category> probability = output.getProbabilityAsCategoryList();
+
+            //close the model
+            model.close();
+
+            //DEBUG display all
+            for(Category c: probability){
+                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
+            }
+
+            Collections.sort(probability, new SortByProbability());
+
+            //Display sorted
+            for(Category c: probability){
+                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
+            }
+            System.out.printf("%d is the size\n", probability.size());
+
+            if(probability.size() != 0){
+                //THIS IS THE ISSUE
+                s =  data.findSeed(probability.get(0).getLabel());
+                f = probability.get(0).getScore();
+                r = new MLPackage(s, f);
+                return r;
+
+            }
+
+        }catch(Exception e){
+            System.out.println("error in ML model");
+        }
+        return null;
+
+    }
 }
 
 class SortByProbability implements Comparator<Category>
