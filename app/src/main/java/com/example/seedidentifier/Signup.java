@@ -99,7 +99,7 @@ public class Signup extends AppCompatActivity {
             return;
         }
         if (password.length() < 6) {
-            NewPassword.setError("Valid password must be atleast 6 characters");
+            NewPassword.setError("Valid password must be at least 6 characters");
             NewPassword.requestFocus();
             return;
         }

@@ -26,7 +26,7 @@ public class User implements Serializable{
     private String SQA;
     private int Login_State;
 
-
+    public User() {}
 
     //Getters and Setters
     public String getUserName(){

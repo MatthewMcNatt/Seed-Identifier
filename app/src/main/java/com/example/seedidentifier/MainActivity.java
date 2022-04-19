@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if (password.length() < 6) {
-            EnterPassword.setError("Valid password must be atleast 6 characters");
+            EnterPassword.setError("Valid password must be at least 6 characters");
             EnterPassword.requestFocus();
             return;
         }
