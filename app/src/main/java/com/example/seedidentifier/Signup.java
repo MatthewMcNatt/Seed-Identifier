@@ -27,6 +27,7 @@ public class Signup extends AppCompatActivity {
     Button CreateAccount;
     NavigationView Back;
     EditText NewPassword;
+    EditText NewEmail;
     EditText NewUsername;
     private FirebaseAuth mAuth;
 
@@ -36,6 +37,7 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         NewPassword = findViewById(R.id.NewPassword);
+        NewEmail = findViewById(R.id.NewEmail);
         NewUsername = findViewById(R.id.NewUsername);
         CreateAccount = findViewById(R.id.CreateAccount);
         Back = findViewById(R.id.back);
@@ -68,9 +70,9 @@ public class Signup extends AppCompatActivity {
 
     private void registerUser() {
         //for every field of user
-        String email = NewUsername.getText().toString().trim();
+        String email = NewEmail.getText().toString().trim();
         String password = NewPassword.getText().toString().trim();
-
+        String username = NewUsername.getText().toString().trim();
         //test db
         // Write a message to the database
         // Write a message to the database
@@ -84,13 +86,13 @@ public class Signup extends AppCompatActivity {
 
         //checking and initializing
         if (email.isEmpty()) {
-            NewUsername.setError("Valid Email required");
-            NewUsername.requestFocus();
+            NewEmail.setError("Valid Email required");
+            NewEmail.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            NewUsername.setError("Valid Email required");
-            NewUsername.requestFocus();
+            NewEmail.setError("Valid Email required");
+            NewEmail.requestFocus();
             return;
         }
         if (password.isEmpty()) {
