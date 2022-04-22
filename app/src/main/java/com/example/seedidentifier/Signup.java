@@ -85,7 +85,7 @@ public class Signup extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
-        System.out.println("I executed!!!");
+        System.out.println("I executed twice!!!");
 
         //
 
