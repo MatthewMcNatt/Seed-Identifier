@@ -20,7 +20,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+/*
+    Removed deprecated User database and added firebase
+    Matthew McNatt(4/9/2022)
+*/
 public class Signup extends AppCompatActivity {
 
 
@@ -68,6 +71,8 @@ public class Signup extends AppCompatActivity {
         });
     }
 
+
+    //TODO: FIX TO BE ORGINAL IMPLEMENTATION
     private void registerUser() {
         //for every field of user
         String email = NewEmail.getText().toString().trim();

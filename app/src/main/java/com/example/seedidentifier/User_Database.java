@@ -17,6 +17,7 @@ import java.util.List;
     NOT edit or remove but these are trivial wrapper functions
     See testing file in Discord
     -Matthew 2/25
+    -FULLY DEPRECATED AS OF 4/22/2022
 */
 public class User_Database implements Serializable {
 

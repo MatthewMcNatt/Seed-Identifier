@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //method will return and do nothing if login failed, starts menu on success
     private void userLogin() {
         String email = EnterUsername.getText().toString().trim();
         String password = EnterPassword.getText().toString().trim();
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             EnterUsername.requestFocus();
             return;
         }
+        //Actual verification logic
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

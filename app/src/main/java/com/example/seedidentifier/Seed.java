@@ -5,13 +5,22 @@ import android.widget.ImageView;
 
 import java.io.Serializable;
 
+/*
+    Implementation of Seed Object
+    Matthew McNatt
+    finalized 4/22/2022
+*/
 public class Seed implements Serializable {
     private static final long serialVersionUID = 1;
     private String _name;
     private String _description;
     private String _notes;
     private String _label;
+
+    /*Android uses int tags to store images*/
     private int _image;
+
+
     private int _data_base_id;
 
     //standard getters

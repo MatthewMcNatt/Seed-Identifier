@@ -1,5 +1,13 @@
 package com.example.seedidentifier;
 
+/*
+    A basic Class to simulate loading data into
+    seed databse from a more extensive object
+    Initially created: Matthew McNatt(3/26/2022)
+    Changed to match ML implementation: Matthew McNatt(4/9/2022)
+
+*/
+
 import java.io.Serializable;
 
 public class SeedPopulator implements Serializable {

@@ -18,7 +18,10 @@ import java.util.List;
 import java.util.Locale;
 
 /*Wrapper for ML
-* Matthew 3/21/2022*/
+* Matthew 3/21/2022
+*  debug statements removed and wrapper completed
+* 4/22/2022
+*/
 
 public class ImageAnalyzer implements Serializable {
 
@@ -32,6 +35,7 @@ public class ImageAnalyzer implements Serializable {
         data = d;
     }
 
+    //SEE DOCUMENTATION FOR DETAILS
     public Seed analyzeImage(Bitmap bitmap){
         try{
 
@@ -46,18 +50,10 @@ public class ImageAnalyzer implements Serializable {
             //close the model
             model.close();
 
-            //DEBUG display all
-            for(Category c: probability){
-                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
-            }
+
 
             Collections.sort(probability, new SortByProbability());
 
-            //Display sorted
-            for(Category c: probability){
-                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
-            }
-            System.out.printf("%d is the size\n", probability.size());
 
             if(probability.size() != 0){
                 //THIS IS THE ISSUE
@@ -76,6 +72,7 @@ public class ImageAnalyzer implements Serializable {
         The match score from the Ml Model for transparency and
         UI display
     */
+    //SEE DOCUMENTATION FOR DETAILS
     public MLPackage analyzeImagePackage(Bitmap bitmap){
         Seed s;
         float f;
@@ -94,18 +91,9 @@ public class ImageAnalyzer implements Serializable {
             //close the model
             model.close();
 
-            //DEBUG display all
-            for(Category c: probability){
-                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
-            }
 
             Collections.sort(probability, new SortByProbability());
 
-            //Display sorted
-            for(Category c: probability){
-                System.out.printf("%s got %f probability.\n", c.getLabel(), c.getScore());
-            }
-            System.out.printf("%d is the size\n", probability.size());
 
             if(probability.size() != 0){
                 //THIS IS THE ISSUE

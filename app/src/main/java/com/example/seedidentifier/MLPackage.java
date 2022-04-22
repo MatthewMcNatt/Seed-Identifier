@@ -1,5 +1,11 @@
 package com.example.seedidentifier;
 
+/*
+    Basic package to return probabbility
+    with seed identified
+    Matthew McNatt
+    finalized-(4/22/2022)
+*/
 public class MLPackage {
     private Seed seed;
     private float score;
