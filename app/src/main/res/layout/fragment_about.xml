@@ -31,12 +31,15 @@
         android:id="@+id/profileFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/about"
-        android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/the_app_uses_tensorflow_lite_to_identify_seeds_using_machine_learning_and_real_time_image_recognition_n_its_is_a_lightweight_machine_learning_model_specializing_in_keeping_operations_on_the_device_rather_than_offloading_the_image_processing_to_a_server_network_n_instead_tensorflow_lite_allows_us_to_create_a_neural_network_for_our_app_that_can_recognize_images_almost_instantly_n_currently_the_model_has_been_trained_on_100_images_each_of_three_separate_seeds_as_a_proof_of_concept_this_can_be_scalable_to_much_larger_datasets_for_an_exponentially_larger_number_of_seeds_while_the_model_per_tensorflow_s_design_will_not_grow_significantly_larger_than_a_megabyte_this_allows_for_both_regular_updates_modifications_and_additions_for_our_app_post_launch"
+        android:textAlignment="center"
+        android:textColor="#009688"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.463" />
 </androidx.constraintlayout.widget.ConstraintLayout>
