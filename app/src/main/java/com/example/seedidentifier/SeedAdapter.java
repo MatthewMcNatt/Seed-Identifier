@@ -45,13 +45,13 @@ public class SeedAdapter extends ArrayAdapter<Seed> {
         // Lookup view for data population
         holder.SeedImage = (ImageView) convertView.findViewById(R.id.SeedImage);
         holder.SeedName = (TextView) convertView.findViewById(R.id.SeedName);
-        holder.SeedDescription = (TextView) convertView.findViewById(R.id.SeedDescription);
+        //holder.SeedDescription = (TextView) convertView.findViewById(R.id.SeedDescription);
 
 
         // Populate the data into the template view using the data object
         holder.SeedImage.setImageResource(seed.getImage());
         holder.SeedName.setText(seed.getSeedName());
-        holder.SeedDescription.setText(seed.getDescription());
+        //holder.SeedDescription.setText(seed.getDescription());
 
 
         // Return the completed view to render on screen

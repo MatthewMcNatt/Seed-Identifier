@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
         // inflate the listView
-        ListView SeedListView = contentView.findViewById(R.id.SeedListView);
+        GridView SeedListView = contentView.findViewById(R.id.SeedListView);
         ArrayList<Seed> SeedList = new ArrayList<Seed>();
 
         // populate the listView
