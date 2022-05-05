@@ -26,12 +26,13 @@
         <entry key="..\:/Users/seand/StudioProjects/Seed-Identifier/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_bottom_navigation.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/activity_camera.xml" value="0.21354166666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14296875" />
         <entry key="app/src/main/res/layout/activity_seed_info.xml" value="0.23412628173828126" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.16893115942028986" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3179656982421875" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25195693362612936" />
+        <entry key="app/src/main/res/layout/grid_view_item.xml" value="0.25406646728515625" />
         <entry key="app/src/main/res/layout/list_view_row.xml" value="0.521790064161069" />
         <entry key="app/src/main/res/menu/back.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.27169036865234375" />

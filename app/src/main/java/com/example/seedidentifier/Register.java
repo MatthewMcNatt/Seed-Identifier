@@ -3,18 +3,15 @@ package com.example.seedidentifier;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
     Removed deprecated User database and added firebase
     Matthew McNatt(4/9/2022)
 */
-public class Signup extends AppCompatActivity {
-
+public class Register extends AppCompatActivity {
 
     Button CreateAccount;
     NavigationView Back;
@@ -54,7 +50,6 @@ public class Signup extends AppCompatActivity {
 
             registerUser();
 
-
             //users.login(NewUsername.getText().toString(), NewPassword.getText().toString());
             //Intent i = new Intent(Signup.this, MenuNavigation.class);
             // Send the user database to the menu navigation activity
@@ -64,7 +59,7 @@ public class Signup extends AppCompatActivity {
 
         Back.setNavigationItemSelectedListener(view -> {
             // Add the entered input as a new default user
-            Intent i = new Intent(Signup.this, MainActivity.class);
+            Intent i = new Intent(Register.this, Login.class);
             // Send the user database to the menu navigation activity
             startActivity(i);
             return true;
@@ -82,9 +77,9 @@ public class Signup extends AppCompatActivity {
         // Write a message to the database
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://auth-c1f4b-default-rtdb.firebaseio.com/");
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("Users");
 
-        myRef.setValue("Hello, World!");
+        //myRef.setValue("Hello, World!");
         System.out.println("I executed twice!!!");
 
         //
@@ -111,40 +106,35 @@ public class Signup extends AppCompatActivity {
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if (task.isSuccessful()) {
-                            System.out.println("create succeeded?!");
-
-                        }else{
-                            Toast.makeText(Signup.this, "Failed to register", Toast.LENGTH_LONG).show();
-                            System.out.println("Update failed, create user busted");
-                            return;
-                        }
-                    }
-                });
-
-        User user = new User(email, password);
-
-        FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(Signup.this, "User has been Registered", Toast.LENGTH_LONG).show();
-                    System.out.println("ADD succeeded??!?!?!?!");
-                    Intent i = new Intent(Signup.this, MenuNavigation.class);
-                    startActivity(i);
-                }else{
-                    Toast.makeText(Signup.this, "Failed to register", Toast.LENGTH_LONG).show();
-                    System.out.println("Update failed, setvalue busted");
-                    return;
-                }
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
+                if(task.isSuccessful()){
+                    User user = new User(email, password);
+
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(Register.this, "User has been registered",Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(Register.this,MenuNavigation.class);
+                                startActivity(i);
+                            }
+                            else {
+                                Toast.makeText(Register.this, "User failed to register",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+                }else{
+                    Toast.makeText(Register.this, "Failed to register", Toast.LENGTH_LONG).show();
+                    System.out.println("Update failed, set value busted");
+
+                }
             }
         });
 

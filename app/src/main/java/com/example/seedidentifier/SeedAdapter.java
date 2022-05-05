@@ -8,18 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import java.util.ArrayList;
 
 public class SeedAdapter extends ArrayAdapter<Seed> {
 
     ArrayList<Seed> seedList;
+    MLPackage _MLPackage;
     Context mContext;
 
 
     public SeedAdapter(ArrayList<Seed> seed, Context context) {
-        super(context, R.layout.list_view_row,seed);
+        super(context, R.layout.grid_view_item,seed);
         this.seedList = seed;
         this.mContext = context;
     }
@@ -28,6 +27,7 @@ public class SeedAdapter extends ArrayAdapter<Seed> {
         ImageView SeedImage;
         TextView SeedName;
         TextView SeedDescription;
+        //TextView SeedScore;
 
     }
 
@@ -38,19 +38,21 @@ public class SeedAdapter extends ArrayAdapter<Seed> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_view_row, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.grid_view_item, parent, false);
         }
 
         Seed seed = getItem(position);
         // Lookup view for data population
         holder.SeedImage = (ImageView) convertView.findViewById(R.id.SeedImage);
         holder.SeedName = (TextView) convertView.findViewById(R.id.SeedName);
+        //holder.SeedScore = (TextView) convertView.findViewById(R.id.Score);
         //holder.SeedDescription = (TextView) convertView.findViewById(R.id.SeedDescription);
 
 
         // Populate the data into the template view using the data object
         holder.SeedImage.setImageResource(seed.getImage());
         holder.SeedName.setText(seed.getSeedName());
+
         //holder.SeedDescription.setText(seed.getDescription());
 
 

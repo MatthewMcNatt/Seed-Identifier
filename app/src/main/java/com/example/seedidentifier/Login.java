@@ -9,11 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ComponentActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,15 +18,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.w3c.dom.Text;
-
 
 /*
     MATTHEW MCNATT (4/9/2022):
     firebase addition and creation
 */
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     //this is the authenticator
     private FirebaseAuth mAuth;
@@ -60,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SignUp.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this,Signup.class);
+            Intent i = new Intent(Login.this, Register.class);
             startActivity(i);
         });
         SignIn = findViewById(R.id.SignIn);
@@ -104,16 +99,17 @@ public class MainActivity extends AppCompatActivity {
                             //get user
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             //redirect to app main menu
-                            Intent i = new Intent(MainActivity.this, MenuNavigation.class);
+
+                            startActivity(new Intent(Login.this, MenuNavigation.class));
+                            //Intent i = new Intent(Login.this, MenuNavigation.class);
                             LoginError.setVisibility(View.INVISIBLE);
-                            startActivity(i);
+                            //startActivity(i );
 
                         }else{
                             LoginError.setVisibility(View.VISIBLE);
-                            Toast.makeText(MainActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Login.this, "Failed to login", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-
     }
 }

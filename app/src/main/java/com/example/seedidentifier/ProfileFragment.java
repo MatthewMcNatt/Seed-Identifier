@@ -21,15 +21,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment{
 
-    private FirebaseUser User;
+    FirebaseUser User;
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference mDatabaseReference;
-    private String UserId;
+    String UserId;
 
-    EditText Email;
-    EditText Password;
+    EditText EmailEditText;
+    EditText PasswordEditText;
 
 
     @Override
@@ -44,27 +44,30 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        Email = contentView.findViewById(R.id.EmailEditText);
-        Password = contentView.findViewById(R.id.PasswordEditText);
+        EmailEditText = contentView.findViewById(R.id.EmailEditText);
+        PasswordEditText = contentView.findViewById(R.id.PasswordEditText);
 
         User = FirebaseAuth.getInstance().getCurrentUser();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(User.getUid());
+//        Toast.makeText(getActivity(), "" + User.getUid(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getActivity(), "" + User.getEmail(), Toast.LENGTH_LONG).show();
 
+        //mDatabaseReference.child("Users").child("userEmail").setValue(User.getUid());
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        UserId = User.getUid();
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.child(UserId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User UserProfile = snapshot.getValue(User.class);
 
                 if(UserProfile != null) {
-                     String EmailField = UserProfile.getUserEmail();
-                     String PasswordField = UserProfile.getUserPassword();
 
-                    Email.setText(EmailField);
-                    Password.setText(PasswordField);
+                    String EmailField = UserProfile.getUserEmail();
+                    String PasswordField = UserProfile.getUserPassword();
+
+                    EmailEditText.setText(EmailField);
+                    PasswordEditText.setText(PasswordField);
                 }
-
-
             }
 
             @Override
@@ -73,14 +76,12 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
         Button Logout;
-        Logout = (Button) contentView.findViewById(R.id.LogoutButton);
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity(),MainActivity.class));
-            }
+        Logout = contentView.findViewById(R.id.LogoutButton);
+        Logout.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getActivity(), Login.class));
         });
 
         return contentView;

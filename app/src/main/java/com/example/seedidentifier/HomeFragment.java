@@ -74,7 +74,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 intent.putExtra("SEED_NAME", finalSeedList.get(i).getSeedName());
                 intent.putExtra("SEED_DESCRIPTION", finalSeedList.get(i).getDescription());
 
-
                 startActivity(intent);
             }
         });

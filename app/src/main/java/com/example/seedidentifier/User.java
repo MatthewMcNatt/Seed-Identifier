@@ -18,10 +18,10 @@ public class User implements Serializable{
 
     //fields
     private String Name;
-    private String Email;
+    public String userEmail;
     private String ID;
     private String Profession;
-    private String Password;
+    public String userPassword;
     private String SQ;
     private String SQA;
     private int Login_State;
@@ -33,7 +33,7 @@ public class User implements Serializable{
         return  Name;
     } // Get the user's name
     public String getUserEmail(){
-        return  Email;
+        return userEmail;
     } // Get the user's name
     public void setUserName(String s) // Set the user's name
     {
@@ -45,10 +45,10 @@ public class User implements Serializable{
     {
         if(s==null){throw new IllegalArgumentException("Email cannot be empty");}
         if(s.length()==0){throw new IllegalArgumentException("Email cannot be empty");}
-        Email = s;
+        userEmail = s;
     }
     public String getUserPassword(){
-        return Password;
+        return userPassword;
     } // Get the current user password
     public String getSQ() // Get the current Security Question
     {
@@ -93,17 +93,17 @@ public class User implements Serializable{
     //constructors
     public void setUserPassword(String s){
         if(s.length()==0){throw new IllegalArgumentException("Password cannot be empty");}
-        Password = s;
+        userPassword = s;
     }
 
     public User(String email, String pass){
-        Password = pass;
-        Email = email;
+        userPassword = pass;
+        userEmail = email;
     }
 
     public void validate(){
         if(Name==null || Name.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
-        if(Password==null || Password.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
+        if(userPassword ==null || userPassword.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
         if(SQ==null || SQ.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
         if(SQA==null || SQA.isEmpty())throw new RuntimeException("Illegal User Object Discovered");
     }
