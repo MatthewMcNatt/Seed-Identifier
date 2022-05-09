@@ -18,17 +18,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_menu" />
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/navigationView"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginTop="1dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:menu="@menu/back">-->
+    <!--    <com.google.android.material.navigation.NavigationView-->
+    <!--        android:id="@+id/navigationView"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        android:layout_marginTop="1dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:menu="@menu/back">-->
 
-<!--    </com.google.android.material.navigation.NavigationView>-->
+    <!--    </com.google.android.material.navigation.NavigationView>-->
 
     <RelativeLayout
         android:id="@+id/TopView"
@@ -69,70 +69,49 @@
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/NameContainer"
-        style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
-        android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toEndOf="@+id/TopView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TopView" >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/NameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Username"
-            android:inputType="textPersonName"
-            android:lines="1" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/EmailContainer"
         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
-        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="60dp"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/NameContainer">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TopView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EmailEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:lines="1"
-            android:maxLength="20"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:hint="Email"/>
+            android:lines="1"
+            android:maxLength="20" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/PasswordContainer"
         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
-        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EmailContainer">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EmailContainer"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:lines="1"
-            android:maxLength="20"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:hint="Password"/>
+            android:lines="1"
+            android:maxLength="20" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,40 +135,40 @@
 
     <!--        <Button-->
 
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:layout_marginBottom="100dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:background="@color/material_dynamic_neutral99"-->
-<!--        android:backgroundTint="#849e2d"-->
-<!--        android:fontFamily="@font/roboto_medium"-->
-<!--        android:text="Update"-->
-<!--        android:textColor="@color/white"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/PasswordContainer"-->
-<!--        app:layout_constraintVertical_bias="0.326"-->
-<!--        tools:ignore="TextContrastCheck">-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:layout_marginBottom="100dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:background="@color/material_dynamic_neutral99"-->
+    <!--        android:backgroundTint="#849e2d"-->
+    <!--        android:fontFamily="@font/roboto_medium"-->
+    <!--        android:text="Update"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/PasswordContainer"-->
+    <!--        app:layout_constraintVertical_bias="0.326"-->
+    <!--        tools:ignore="TextContrastCheck">-->
 
-<!--    </Button>-->
+    <!--    </Button>-->
 
 
     <!--    <Button-->
-<!--        android:id="@+id/ConfirmAccount"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        android:layout_marginBottom="184dp"-->
-<!--        android:text="Confirm"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/TV_Password"-->
-<!--        app:layout_constraintVertical_bias="0.45" />-->
+    <!--        android:id="@+id/ConfirmAccount"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="80dp"-->
+    <!--        android:layout_marginBottom="184dp"-->
+    <!--        android:text="Confirm"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/BottomNavView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.498"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/TV_Password"-->
+    <!--        app:layout_constraintVertical_bias="0.45" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

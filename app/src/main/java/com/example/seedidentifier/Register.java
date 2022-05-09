@@ -37,7 +37,6 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         NewPassword = findViewById(R.id.NewPassword);
         NewEmail = findViewById(R.id.NewEmail);
-        NewUsername = findViewById(R.id.NewUsername);
         CreateAccount = findViewById(R.id.CreateAccount);
         Back = findViewById(R.id.back);
 
@@ -72,7 +71,6 @@ public class Register extends AppCompatActivity {
         //for every field of user
         String email = NewEmail.getText().toString().trim();
         String password = NewPassword.getText().toString().trim();
-        String username = NewUsername.getText().toString().trim();
         //test db
         // Write a message to the database
         // Write a message to the database
