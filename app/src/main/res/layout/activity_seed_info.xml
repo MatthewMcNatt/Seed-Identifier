@@ -15,9 +15,10 @@
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ET_SeedNotes" />
+        app:layout_constraintTop_toBottomOf="@+id/ET_SeedNotes"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/IV_SeedPicture"
@@ -78,8 +79,8 @@
 
     <EditText
         android:id="@+id/ET_SeedNotes"
-        android:layout_width="335dp"
-        android:layout_height="155dp"
+        android:layout_width="334dp"
+        android:layout_height="77dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:ems="10"

@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,11 +33,22 @@ import java.util.ArrayList;
 import java.util.BitSet;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
+
+    GridView SeedListView;
+    SeedAdapter adapter;
+    public Seed_Database seed_database;
+    public File imageDir;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
+
+        imageDir = new File(getContext().getCodeCacheDir().getAbsolutePath() + "/Data/");
+
         View contentView = inflater.inflate(R.layout.fragment_home,container,false);
 
         // Added code for the camera implementation. Not final, move as desired.
@@ -74,14 +86,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
         // inflate the listView
-        GridView SeedListView = contentView.findViewById(R.id.SeedListView);
+        SeedListView = contentView.findViewById(R.id.SeedListView);
         ArrayList<Seed> SeedList = new ArrayList<Seed>();
 
         // populate the listView
-        Seed_Database seed_database = new Seed_Database();
-        SeedPopulator seed_populator = new SeedPopulator();
-        seed_populator.populate(seed_database);
-
+        seed_database = new Seed_Database();
+        //SeedPopulator seed_populator = new SeedPopulator();
+        //seed_populator.populate(seed_database);
+        seed_database.loadData(imageDir.toString());
         SeedList = seed_database.get_seeds();
 
         //  System.out.println(SeedList);
@@ -94,7 +106,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 //                R.drawable.cucumber));
 //        SeedList.add(new Seed("Pumpkin Seed","This staple vegetable is technically a fruit that grows from a vine and does best in warm humid environments",
 //                R.drawable.sunflower));
-        SeedAdapter adapter = new SeedAdapter(SeedList,getActivity());
+        adapter = new SeedAdapter(SeedList,getActivity());
 
         ArrayList<Seed> finalSeedList = SeedList;
         SeedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -113,7 +125,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         return contentView;
     }
-
 
     // This is the code in charge of starting and getting the info from the gallery file selection.
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -154,6 +165,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                         intent.putExtra("SEED_NAME",seed.getSeedName());
                         intent.putExtra("SEED_DESCRIPTION", seed.getDescription());
                         startActivity(intent);
+                        adapter.add(seed);
+                        SeedListView.setAdapter(adapter);
+
                     }
                     else{
                         Toast.makeText(getContext(),"Image not recognized" , Toast.LENGTH_SHORT).show();
