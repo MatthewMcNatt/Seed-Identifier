@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         // If camera was chosen:
-                        if( menuItem.getTitle().equals("Use")){
+                        if( menuItem.getTitle().equals("Use Camera")){
                             Intent toCamera = new Intent(getActivity(),Camera.class);
                             startActivity(toCamera);
                             return true;
