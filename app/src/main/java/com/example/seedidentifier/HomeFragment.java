@@ -39,8 +39,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public Seed_Database seed_database;
     public File imageDir;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,16 +94,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         seed_database.loadData(imageDir.toString());
         SeedList = seed_database.get_seeds();
 
-        //  System.out.println(SeedList);
-//
-//        SeedList.add(new Seed("Sunflower Seed","Sunflowers make for a beautiful edition to any summer garden",
-//                R.drawable.sunflower));
-//        SeedList.add(new Seed("Corn Seed","Also known as Maize, this cereal crop is a staple that does best being planted after the last frost",
-//                R.drawable.corn));
-//        SeedList.add(new Seed("Cucumber Seed","This staple vegetable is technically a fruit that grows from a vine and does best in warm humid environments",
-//                R.drawable.cucumber));
-//        SeedList.add(new Seed("Pumpkin Seed","This staple vegetable is technically a fruit that grows from a vine and does best in warm humid environments",
-//                R.drawable.sunflower));
         adapter = new SeedAdapter(SeedList,getActivity());
 
         ArrayList<Seed> finalSeedList = SeedList;
@@ -165,6 +153,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                         intent.putExtra("SEED_NAME",seed.getSeedName());
                         intent.putExtra("SEED_DESCRIPTION", seed.getDescription());
                         startActivity(intent);
+
+                        seed_database.saveData(imageDir.toString());
                         adapter.add(seed);
                         SeedListView.setAdapter(adapter);
 

@@ -46,10 +46,6 @@ public class Seed_Info extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                HomeFragment temp = new HomeFragment();
-                //temp.seed_database.saveData(temp.imageDir.toString());
-                Toast.makeText(Seed_Info.this, "The game", Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(Seed_Info.this,MenuNavigation.class);
                 startActivity(intent);
             }
